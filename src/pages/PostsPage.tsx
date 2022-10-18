@@ -1,7 +1,7 @@
 function PostsPage() {
     return (
         <div>
-            users-page
+            posts-page
         </div>
     )
 }

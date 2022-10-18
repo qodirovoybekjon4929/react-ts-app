@@ -1,6 +1,5 @@
-// import { CgMenu } from "react-icons/fa"
+import {useNavigate} from "react-router-dom"
 import "../../styles/navbar.css"
-import {Link} from "react-router-dom"
 
 interface BTypes {
     id: number
@@ -30,8 +29,14 @@ function NavBar() {
     let button: HTMLElement | any = []
 
     buttons.forEach(btn => {
-        button.push(<div className="buttons" key={btn.id}>{btn.name}</div>)
+        button.push(<div className="buttons" key={btn.id} onClick={() => goPage(btn)}>{btn.name}</div>)
     })
+
+    let navigate = useNavigate()
+
+    function goPage(data: BTypes) {    
+        navigate(data.to)
+    }
 
     return (
         <div className="parent">
