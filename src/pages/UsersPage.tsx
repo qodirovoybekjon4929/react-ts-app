@@ -7,9 +7,33 @@ interface UTypes {
 }
 
 function UsersPage() {
-    const [usersData, setUsers] = useState([])
+    let [usersData, setUsers] = useState<UTypes[]>([
+        {
+            id: 1,
+            fullname: "some"
+        },
+        {
+            id: 2,
+            fullname: "some2"
+        },
+        {
+            id: 3,
+            fullname: "some3"
+        }
+    ])
+    function deleteUser(id: number) {
+        let users: UTypes[] = []
+        usersData.map((user: UTypes) => {
+            if(user.id != id) {
+                users.push(user)
+                setUsers(usersData = users)
+            } else if(user.id == id && users.length < 1) {
+                setUsers(usersData = [])
+            }
+        })
+    }
     return (
-        <Users />
+        <Users users={usersData} deleteUser={deleteUser} />
     )
 }
 
